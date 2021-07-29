@@ -20,7 +20,7 @@ class Store {
     return this.read().then((notes) => {
       let parsedNotes;
 
-      // If notes isn't an array or can't be turned into one, send back a new empty array
+      // If notes isn't an array or can't be turned into one and send back a new empty array
       try {
         parsedNotes = [].concat(JSON.parse(notes));
       } catch (err) {
@@ -41,7 +41,7 @@ class Store {
     // Add a unique id to the note using uuid package
     const newNote = { title, text, id: uuidv4() };
 
-    // Get all notes, add the new note, write all the updated notes, return the newNote
+    //get add and edit notes
     return this.getNotes()
       .then((notes) => [...notes, newNote])
       .then((updatedNotes) => this.write(updatedNotes))
